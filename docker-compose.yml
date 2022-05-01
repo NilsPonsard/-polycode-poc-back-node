@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+
+  server:
+    build: .
+    ports:
+      - "8080:3000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_DATABASE=postgres
+      - JWT_KEY=WzIyMywxOTYsNzAsMjI4LDYzLDcwLDExOCw0NSw4MiwxMDUsMTI0LDkwLDI1MCwxNDQsMjEyLDEzLDE0LDIwNyw3NSwyMjgsMjMyLDI0NywxNCwxMDIsMTkyLDIyMSw5MCwxNzIsMTM5LDE5MywxOTQsMTM5LDc0LDUxLDUsMjE3LDE5MiwyMjEsMTc4LDEzMywyMjEsMTQxLDE0NSwxNDksODEsMzQsMjAxLDEyLDYzLDE0MSwyNSwyNDMsMTEzLDE0OCwyNDgsNzEsNzMsNywyNDcsNTYsMTk4LDk4LDQyLDI0MywyNCwxNjgsMjU0LDg3LDI5LDg4LDE1MywyMDcsMTA3LDExMSwxMjEsMTA3LDE3Nyw5NCwxNjAsMjE2LDEsMTIzLDExOCwxLDM1LDI1MSw3MiwxOTIsMjQsMTQ4LDIxMywxODAsMjIwLDEzLDI3LDkyLDE5MiwxNzMsMTg4LDIzMSwzMCw4MiwyMTcsOTUsMTA4LDAsNzAsNzksMTU1LDE2OCwzMiwxMDIsMTczLDM1LDY3LDMzLDIzNywyNTEsMzUsMjQ5LDg0LDQxLDI1MCwxODEsNzAsMzAsNzksMTg4XQ==
+    restart: unless-stopped  
+    
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+
+    expose:
+      - 5432
+
+    # debug, remove when done
+    ports:
+      - "5432:5432"
+    
+
+  # explore database, for debug only
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+
+volumes:
+  postgres_data: null
