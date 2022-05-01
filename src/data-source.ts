@@ -1,4 +1,4 @@
-import { DataSource } from 'typeorm/data-source';
+import { DataSource } from 'typeorm';
 import isUndefined from './utils/isundefined';
 
 const entities = [];
@@ -27,7 +27,9 @@ export async function getDataSource(): Promise<DataSource> {
     migrations: [],
   });
 
-  dataSource.initialize();
+  await dataSource.initialize();
+
+  dataSource.synchronize();
 
   return dataSource;
 }

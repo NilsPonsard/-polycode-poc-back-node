@@ -7,10 +7,14 @@ export class User {
 
   @Column({
     length: 50,
+    unique: true,
   })
   name: string;
 
-  @Column({ length: 2000 })
+  @Column({
+    length: 2000,
+    unique: true,
+  })
   email: string;
 
   @Column('text')
