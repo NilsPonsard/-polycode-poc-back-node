@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { User } from './users/entities/user.entity';
+import { User } from './entities/user.entity';
 import isUndefined from './utils/isundefined';
 
 const entities = [User];

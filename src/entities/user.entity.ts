@@ -19,4 +19,7 @@ export class User extends BaseEntity {
 
   @Column('text')
   hashedPassword: string;
+
+  @Column()
+  emailVerified: boolean;
 }
