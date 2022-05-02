@@ -5,10 +5,16 @@ import { accessExpiration, verify } from './jwt';
 
 declare module 'express' {
   interface Request {
-    accessToken: string;
-    user: User;
+    accessToken: string | undefined;
+    user: User | undefined;
   }
 }
+
+/**
+ * Check if the user is authenticated and adds the user info to the request object :
+ * - request.user
+ * - request.accessToken
+ */
 @Injectable()
 export class AuthGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {

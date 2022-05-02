@@ -15,6 +15,13 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from './auth.guard';
 import { AccessToken } from 'src/entities/accessToken.entity';
 import { Request } from 'express';
+
+/**
+ * AuthController
+ *
+ * This controller handles all routes concerning the Authentication
+ *
+ */
 @Controller('auth')
 @ApiTags('auth')
 export class AuthController {
