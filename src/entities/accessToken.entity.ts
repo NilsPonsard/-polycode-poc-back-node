@@ -8,7 +8,7 @@ import {
 import { User } from './user.entity';
 
 @Entity()
-export class AccessTokens extends BaseEntity {
+export class AccessToken extends BaseEntity {
   @PrimaryColumn()
   token: string;
 

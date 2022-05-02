@@ -1,20 +1,16 @@
 import {
   BaseEntity,
-  Column,
   CreateDateColumn,
   Entity,
   ManyToOne,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
 } from 'typeorm';
 import { User } from './user.entity';
 
 @Entity()
-export class Emails extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
-  code: string;
+export class RefreshToken extends BaseEntity {
+  @PrimaryColumn()
+  token: string;
 
   @ManyToOne(() => User)
   user: User;
