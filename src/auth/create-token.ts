@@ -4,32 +4,29 @@ import { User } from 'src/entities/user.entity';
 import { v4 as uuidv4 } from 'uuid';
 import { accessExpiration, refreshExpiration, sign } from './jwt';
 
-export function createAccessToken(user: User): { token: string } {
+export function createToken(
+  user: User,
+  tokenEntity: RefreshToken | AccessToken,
+) {
   const token = uuidv4();
 
-  const accessToken = new AccessToken();
-  accessToken.token = token;
-  accessToken.user = user;
+  tokenEntity.token = token;
+  tokenEntity.user = user;
 
-  accessToken.save();
-
-  return { token };
-}
-
-export function createRefreshToken(user: User): { token: string } {
-  const token = uuidv4();
-
-  const refreshToken = new RefreshToken();
-  refreshToken.token = token;
-  refreshToken.user = user;
-
-  refreshToken.save();
+  tokenEntity.save();
   return { token };
 }
 
 export async function newTokenPair(user: User) {
-  const accessToken = await sign(createAccessToken(user), accessExpiration);
-  const refreshToken = await sign(createRefreshToken(user), refreshExpiration);
+  const accessToken = await sign(
+    createToken(user, new AccessToken()),
+    accessExpiration,
+  );
+
+  const refreshToken = await sign(
+    createToken(user, new RefreshToken()),
+    refreshExpiration,
+  );
 
   return { accessToken, refreshToken };
 }
