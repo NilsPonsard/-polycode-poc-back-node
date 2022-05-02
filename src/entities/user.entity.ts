@@ -30,4 +30,10 @@ export class User extends BaseEntity {
     default: false,
   })
   emailVerified: boolean;
+
+  // @OneToMany(() => AccessToken, (accessToken) => accessToken.user)
+  // accessTokens: AccessToken[];
+
+  // @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.user)
+  // refreshTokens: RefreshToken[];
 }

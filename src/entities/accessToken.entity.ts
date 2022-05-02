@@ -12,7 +12,7 @@ export class AccessToken extends BaseEntity {
   @PrimaryColumn()
   token: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User /*, (user) => user.accessTokens*/)
   user: User;
 
   @CreateDateColumn()

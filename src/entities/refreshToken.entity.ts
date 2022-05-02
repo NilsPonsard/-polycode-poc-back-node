@@ -12,7 +12,7 @@ export class RefreshToken extends BaseEntity {
   @PrimaryColumn()
   token: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User /*, (user) => user.refreshTokens */)
   user: User;
 
   @CreateDateColumn()
