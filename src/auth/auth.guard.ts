@@ -1,5 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { AccessTokens } from 'src/entities/accessTokens.entity';
+import { AccessToken } from 'src/entities/accessToken.entity';
 import { accessExpiration, verify } from './jwt';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
     const token = typeof content != 'string' ? content?.token : undefined;
     if (!token) return false;
 
-    const { user, createdAt } = await AccessTokens.findOne({
+    const { user, createdAt } = await AccessToken.findOne({
       where: { token },
     });
 
