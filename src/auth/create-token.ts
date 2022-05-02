@@ -27,9 +27,9 @@ export function createRefreshToken(user: User): { token: string } {
   return { token };
 }
 
-export function newTokenPair(user: User) {
-  const accessToken = sign(createAccessToken(user), accessExpiration);
-  const refreshToken = sign(createRefreshToken(user), refreshExpiration);
+export async function newTokenPair(user: User) {
+  const accessToken = await sign(createAccessToken(user), accessExpiration);
+  const refreshToken = await sign(createRefreshToken(user), refreshExpiration);
 
   return { accessToken, refreshToken };
 }
