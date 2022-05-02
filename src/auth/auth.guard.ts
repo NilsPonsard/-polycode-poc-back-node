@@ -16,6 +16,7 @@ export class AuthGuard implements CanActivate {
 
     const { user, createdAt } = await AccessToken.findOne({
       where: { token },
+      relations: { user: true },
     });
 
     if (!user) return false;
