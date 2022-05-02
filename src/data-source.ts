@@ -1,7 +1,8 @@
 import { DataSource } from 'typeorm';
+import { User } from './users/entities/user.entity';
 import isUndefined from './utils/isundefined';
 
-const entities = [];
+const entities = [User];
 
 export async function getDataSource(): Promise<DataSource> {
   const port = parseInt(process.env.DB_PORT) ?? 5432;
@@ -30,6 +31,5 @@ export async function getDataSource(): Promise<DataSource> {
   await dataSource.initialize();
 
   dataSource.synchronize();
-
   return dataSource;
 }
