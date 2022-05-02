@@ -9,7 +9,7 @@ export class AuthGuard implements CanActivate {
     const authorization = request.headers?.authorization as undefined | string;
 
     if (!authorization) return false;
-    const content = await verify(authorization);
+    const content = await verify(authorization.replace('Bearer ', ''));
 
     const token = typeof content != 'string' ? content?.token : undefined;
     if (!token) return false;
