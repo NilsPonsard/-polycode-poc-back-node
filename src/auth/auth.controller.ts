@@ -3,8 +3,10 @@ import { User } from 'src/entities/user.entity';
 import { LoginDto } from './dto/login.dto';
 import * as bcrypt from 'bcrypt';
 import { newTokenPair } from './create-token';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
+@ApiTags('auth')
 export class AuthController {
   @Post('login')
   async login(@Body() loginDto: LoginDto) {
