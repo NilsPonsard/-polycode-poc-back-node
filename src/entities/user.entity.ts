@@ -8,18 +8,26 @@ export class User extends BaseEntity {
   @Column({
     length: 50,
     unique: true,
+    nullable: false,
   })
   username: string;
 
   @Column({
     length: 2000,
     unique: true,
+    nullable: false,
   })
   email: string;
 
-  @Column('text')
+  @Column({
+    type: 'text',
+    nullable: false,
+    unique: true,
+  })
   hashedPassword: string;
 
-  @Column()
+  @Column({
+    default: false,
+  })
   emailVerified: boolean;
 }
