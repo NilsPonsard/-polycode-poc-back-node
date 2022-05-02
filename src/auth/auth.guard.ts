@@ -36,9 +36,12 @@ export class AuthGuard implements CanActivate {
 
     const { user, createdAt } = queryResult;
 
-    if (!user) return false;
-    if (createdAt.getTime() + accessExpiration * 1000 < Date.now())
+    if (createdAt.getTime() + accessExpiration * 1000 < Date.now()) {
+      // delete old token
+      AccessToken.delete({ token });
       return false;
+    }
+    if (!user) return false;
 
     request.user = user;
     request.accessToken = token;
