@@ -30,6 +30,6 @@ export async function getDataSource(): Promise<DataSource> {
 
   await dataSource.initialize();
 
-  dataSource.synchronize();
+  await dataSource.synchronize();
   return dataSource;
 }
