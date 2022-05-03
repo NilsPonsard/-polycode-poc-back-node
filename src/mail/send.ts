@@ -48,25 +48,28 @@ export async function sendValidationMail(user: User) {
   await emailEntity.save();
 
   const url = `${frontendUrl}/auth/validate?code=${code}`;
-
-  await axios.default.post(
-    'https://api.sendinblue.com/v3/smtp/email',
-    {
-      sender: {
-        name: 'noreply',
-        email: senderEmail,
-      },
-      to: [
-        {
-          email,
-          name: user.username,
+  try {
+    await axios.default.post(
+      'https://api.sendinblue.com/v3/smtp/email',
+      {
+        sender: {
+          name: 'noreply',
+          email: senderEmail,
         },
-      ],
-      subject: 'Polycode : validate your account',
-      htmlContent: `<p>Hello ${user.username}, to validate your account, please follow this link : <a href="${url}"> ${url}</a> </p>`,
-    },
-    {
-      headers: { 'api-key': sendiblueKey },
-    },
-  );
+        to: [
+          {
+            email,
+            name: user.username,
+          },
+        ],
+        subject: 'Polycode : validate your account',
+        htmlContent: `<p>Hello ${user.username}, to validate your account, please follow this link : <a href="${url}"> ${url}</a> </p>`,
+      },
+      {
+        headers: { 'api-key': sendiblueKey },
+      },
+    );
+  } catch (e) {
+    console.log(e);
+  }
 }
