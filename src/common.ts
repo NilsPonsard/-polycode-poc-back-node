@@ -1,1 +1,1 @@
-export const frontendUrl = process.env.FRONTEND_URL || 'polycode.nponsard.net';
+export const FrontendUrl = process.env.FRONTEND_URL || 'polycode.nponsard.net';
