@@ -47,7 +47,7 @@ export async function sendValidationMail(user: User) {
 
   await emailEntity.save();
 
-  const url = `${frontendUrl}/auth/validate?code=${code}`;
+  const url = `${frontendUrl}/auth/validate/${code}`;
   try {
     await axios.default.post(
       'https://api.sendinblue.com/v3/smtp/email',
