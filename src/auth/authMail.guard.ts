@@ -1,8 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { AccessToken } from 'src/entities/accessToken.entity';
 import { AuthGuard } from './auth.guard';
-
-import { accessExpiration, verify } from './jwt';
 
 /**
  * Check if the user is authenticated and adds the user info to the request object :
