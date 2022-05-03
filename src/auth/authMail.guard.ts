@@ -2,9 +2,7 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { AuthGuard } from './auth.guard';
 
 /**
- * Check if the user is authenticated and adds the user info to the request object :
- * - request.user
- * - request.accessToken
+ * Check if the user is authenticated and has his mail validated
  */
 @Injectable()
 export class AuthGuardValidMail implements CanActivate {
