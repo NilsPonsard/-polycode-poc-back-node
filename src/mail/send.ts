@@ -61,7 +61,7 @@ export async function sendValidationMail(user: User) {
       email,
       'Polycode : validate your account',
       /*html*/
-      `<p>Hello and welcome to polycode ${user.username} !</p>
+      `<p>Hello ${user.username} and welcome to polycode !</p>
       <p>Please click on the following link to validate your account :
       <a href="${url}">${url}</a>
       </p>`,
