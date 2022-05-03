@@ -8,6 +8,9 @@
 - DB_USERNAME : database user
 - DB_PASSWORD : database password for DB_USERNAME
 - DB_DATABASE : name of the database to use
+- FRONTEND_URL : url to the frontend
+- SENDIBLUE_KEY : the sendiblue api key
+- SENDER_EMAIL : the email to use when sending validation emails
 
 ## Description
 
