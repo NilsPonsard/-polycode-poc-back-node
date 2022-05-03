@@ -1,14 +1,14 @@
+import { randomUUID } from 'crypto';
 import { AccessToken } from 'src/entities/accessToken.entity';
 import { RefreshToken } from 'src/entities/refreshToken.entity';
 import { User } from 'src/entities/user.entity';
-import { v4 as uuidv4 } from 'uuid';
 import { accessExpiration, refreshExpiration, sign } from './jwt';
 
 export function createToken(
   user: User,
   tokenEntity: RefreshToken | AccessToken,
 ) {
-  const token = uuidv4();
+  const token = randomUUID();
 
   tokenEntity.token = token;
   tokenEntity.user = user;
