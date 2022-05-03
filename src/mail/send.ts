@@ -3,14 +3,16 @@ import { Email } from 'src/entities/email.entity';
 import { User } from 'src/entities/user.entity';
 import * as axios from 'axios';
 import { frontendUrl } from 'src/common';
+import { MailCoolDown } from './constants';
+import { HttpException } from '@nestjs/common';
 
 const sendiblueKey = process.env.SENDIBLUE_KEY;
 const senderEmail = process.env.SENDER_EMAIL;
 
-export const MailExpiration = 60 * 60 * 15; // 15 minutes
-export const MailCoolDown = 60 * 60 * 5; // 5 minutes
-
 export async function sendValidationMail(user: User) {
+  if (user.emailVerified)
+    throw new HttpException('User already validated', 400);
+
   const lastEmail = await Email.findOne({
     where: {
       user: {
@@ -22,9 +24,8 @@ export async function sendValidationMail(user: User) {
     },
   });
 
-  if (lastEmail && lastEmail.createdAt.getTime() + MailCoolDown > Date.now()) {
+  if (lastEmail && lastEmail.createdAt.getTime() + MailCoolDown > Date.now())
     throw new Error('Mail cooldown');
-  }
 
   // Delete old codes
 
