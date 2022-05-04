@@ -1,5 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { AuthGuard } from './auth.guard';
+import { CheckUser } from './check-user';
 
 /**
  * Check if the user is authenticated and has his mail validated
@@ -7,9 +7,12 @@ import { AuthGuard } from './auth.guard';
 @Injectable()
 export class AuthGuardValidMail implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    return (
-      new AuthGuard().canActivate(context) &&
-      context.switchToHttp().getRequest().user.validated
-    );
+    const request = context.switchToHttp().getRequest();
+
+    const validUser = await CheckUser(request);
+
+    if (!validUser) return false;
+
+    return request.user.emailVerified;
   }
 }
