@@ -4,7 +4,7 @@ export function GetMongoModule() {
   const uri = process.env.MONGO_URI;
 
   return MongooseModule.forRoot(uri, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
+    // useNewUrlParser: true,
+    // useCreateIndex: true,
   });
 }
