@@ -50,4 +50,16 @@ export class CompletionService {
 
     return { completed: parseInt(completed) || 0, total };
   }
+
+  async setExerciseCompleted(
+    collectionId: string,
+    exerciseId: string,
+    user: User,
+  ): Promise<void> {
+    const completion = new Completion();
+    completion.collectionId = collectionId;
+    completion.exerciseId = exerciseId;
+    completion.user = user;
+    await completion.save();
+  }
 }
