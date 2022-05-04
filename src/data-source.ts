@@ -8,6 +8,8 @@ import isUndefined from './utils/isundefined';
 
 const entities = [User, Email, RefreshToken, AccessToken, Completion];
 
+export let dataSource: DataSource;
+
 export async function getDataSource(): Promise<DataSource> {
   const port = parseInt(process.env.DB_PORT) ?? 5432;
   const host = process.env.DB_HOST ?? 'localhost';
@@ -18,7 +20,7 @@ export async function getDataSource(): Promise<DataSource> {
   if (isUndefined(username, password))
     throw new Error('DB_USERNAME and DB_PASSWORD must be set');
 
-  const dataSource = new DataSource({
+  dataSource = new DataSource({
     type: 'postgres',
     host,
     port,
@@ -35,5 +37,6 @@ export async function getDataSource(): Promise<DataSource> {
   await dataSource.initialize();
 
   await dataSource.synchronize();
+
   return dataSource;
 }

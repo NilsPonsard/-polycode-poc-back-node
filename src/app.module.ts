@@ -9,6 +9,7 @@ import { RunnerModule } from './runner/runner.module';
 import { GetMongoModule } from './setup-mongo';
 import { CollectionModule } from './collection/collection.module';
 import { ExerciceModule } from './exercice/exercice.module';
+import { CompletionModule } from './completion/completion.module';
 
 @Module({
   controllers: [AppController, MailController],
@@ -21,6 +22,7 @@ import { ExerciceModule } from './exercice/exercice.module';
     GetMongoModule(),
     CollectionModule,
     ExerciceModule,
+    CompletionModule,
   ],
 })
 export class AppModule {}
