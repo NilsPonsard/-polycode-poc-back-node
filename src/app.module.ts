@@ -8,6 +8,7 @@ import { MailModule } from './mail/mail.module';
 import { RunnerModule } from './runner/runner.module';
 import { GetMongoModule } from './setup-mongo';
 import { CollectionModule } from './collection/collection.module';
+import { ExerciceModule } from './exercice/exercice.module';
 
 @Module({
   controllers: [AppController, MailController],
@@ -19,6 +20,7 @@ import { CollectionModule } from './collection/collection.module';
     RunnerModule,
     GetMongoModule(),
     CollectionModule,
+    ExerciceModule,
   ],
 })
 export class AppModule {}
