@@ -1,11 +1,12 @@
 import { DataSource } from 'typeorm';
 import { AccessToken } from './entities/accessToken.entity';
+import { Completion } from './entities/completion.entity';
 import { Email } from './entities/email.entity';
 import { RefreshToken } from './entities/refreshToken.entity';
 import { User } from './entities/user.entity';
 import isUndefined from './utils/isundefined';
 
-const entities = [User, Email, RefreshToken, AccessToken];
+const entities = [User, Email, RefreshToken, AccessToken, Completion];
 
 export async function getDataSource(): Promise<DataSource> {
   const port = parseInt(process.env.DB_PORT) ?? 5432;
