@@ -7,3 +7,8 @@ export class Output {
   @ApiProperty()
   stderr: string;
 }
+
+export class AvailableLanguages {
+  @ApiProperty()
+  languages: string[];
+}
