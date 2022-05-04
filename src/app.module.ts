@@ -7,6 +7,7 @@ import { MailController } from './mail/mail.controller';
 import { MailModule } from './mail/mail.module';
 import { RunnerModule } from './runner/runner.module';
 import { GetMongoModule } from './setup-mongo';
+import { CollectionModule } from './collection/collection.module';
 
 @Module({
   controllers: [AppController, MailController],
@@ -17,6 +18,7 @@ import { GetMongoModule } from './setup-mongo';
     MailModule,
     RunnerModule,
     GetMongoModule(),
+    CollectionModule,
   ],
 })
 export class AppModule {}

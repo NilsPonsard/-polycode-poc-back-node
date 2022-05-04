@@ -2,10 +2,10 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
 import { Exercise } from './exercise.entity';
 
-export type CollectionDocument = Collection & Document;
+export type ExerciceCollectionDocument = ExerciceCollection & Document;
 
 @Schema()
-export class Collection extends Document {
+export class ExerciceCollection extends Document {
   @Prop()
   _id: string;
 
@@ -22,4 +22,5 @@ export class Collection extends Document {
   content: Exercise[];
 }
 
-export const CollectionSchema = SchemaFactory.createForClass(Collection);
+export const ExerciceCollectionSchema =
+  SchemaFactory.createForClass(ExerciceCollection);
