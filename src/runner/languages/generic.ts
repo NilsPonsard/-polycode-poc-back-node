@@ -1,1 +1,9 @@
-export type Output = { stdout: string; stderr: string };
+import { ApiProperty } from '@nestjs/swagger';
+
+export class Output {
+  @ApiProperty()
+  stdout: string;
+
+  @ApiProperty()
+  stderr: string;
+}

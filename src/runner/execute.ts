@@ -1,11 +1,8 @@
 import { HttpException } from '@nestjs/common';
 
 import * as ts from 'typescript';
+import { dockerRunCode } from './docker';
 import { Output } from './languages/generic';
-import { ExecuteJava } from './languages/java';
-import { ExecuteNode } from './languages/node';
-import { ExecutePython } from './languages/python';
-import { ExecuteRust } from './languages/Rust';
 
 export async function execute(language: string, code: string) {
   let result: Output;
@@ -20,16 +17,16 @@ export async function execute(language: string, code: string) {
         },
       }).outputText;
     case 'javascript':
-      result = await ExecuteNode(code);
+      result = await dockerRunCode('node-runner', code);
       break;
     case 'java':
-      result = await ExecuteJava(code);
+      result = await dockerRunCode('java-runner', code);
       break;
     case 'rust':
-      result = await ExecuteRust(code);
+      result = await dockerRunCode('rust-runner', code);
       break;
     case 'python':
-      result = await ExecutePython(code);
+      result = await dockerRunCode('python-runner', code);
       break;
     default:
       throw new HttpException('Language not supported', 400);

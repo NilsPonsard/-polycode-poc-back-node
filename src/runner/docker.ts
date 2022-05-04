@@ -1,12 +1,13 @@
 import * as Docker from 'dockerode';
 import { Stream } from 'stream';
+import { Output } from './languages/generic';
 
 const docker = new Docker();
 
 export async function dockerRunCode(
   image: string,
   code: string,
-): Promise<{ stdout: string; stderr: string }> {
+): Promise<Output> {
   let stdoutString = '';
 
   let stderrString = '';
