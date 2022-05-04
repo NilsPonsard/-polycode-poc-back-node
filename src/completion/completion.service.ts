@@ -31,7 +31,7 @@ export class CompletionService {
     const collection = await this.ExerciceCollectionModel.findById(
       collectionId,
     ).exec();
-    return collection.content.length;
+    return collection?.content?.length ?? 0;
   }
 
   async getCollectionCompleted(
@@ -40,7 +40,7 @@ export class CompletionService {
   ): Promise<CollectionCompletion> {
     const total = await this.getCollectionTotal(collectionId);
 
-    const completed = await dataSource
+    const { count: completed } = await dataSource
       .getRepository(Completion)
       .createQueryBuilder('completion')
       .where('completion.userId = :userId', { userId: user.id })
@@ -48,6 +48,6 @@ export class CompletionService {
       .select('COUNT(DISTINCT completion.exerciseId)')
       .getRawOne();
 
-    return { completed, total };
+    return { completed: parseInt(completed) || 0, total };
   }
 }
