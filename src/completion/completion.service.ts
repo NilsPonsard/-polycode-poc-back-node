@@ -62,4 +62,23 @@ export class CompletionService {
     completion.user = user;
     await completion.save();
   }
+
+  async getExerciseCompletion(
+    collectionId: string,
+    exerciseId: string,
+    user: User,
+  ) {
+    const completion = await Completion.find({
+      where: {
+        user: {
+          id: user.id,
+        },
+        collectionId,
+        exerciseId,
+      },
+    });
+
+    if (!completion) return { completed: false };
+    return { completed: true, at: completion.map((c) => c.createdAt) };
+  }
 }

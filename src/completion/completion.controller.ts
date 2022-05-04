@@ -36,4 +36,19 @@ export class CompletionController {
       request.user,
     );
   }
+
+  @Get(':collectionId/:exerciceId')
+  @UseGuards(AuthGuardValidMail)
+  @ApiBearerAuth('authorization')
+  async getExerciseCompletion(
+    @Param('collectionId') collectionId: string,
+    @Param('exerciceId') exerciceId: string,
+    @Req() request: Request,
+  ) {
+    return this.completionService.getExerciseCompletion(
+      collectionId,
+      exerciceId,
+      request.user,
+    );
+  }
 }
