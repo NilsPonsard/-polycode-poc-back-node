@@ -7,11 +7,13 @@ import {
   Param,
   // Delete,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { ExerciceService } from './exercice.service';
 // import { CreateExerciceDto } from './dto/create-exercice.dto';
 // import { UpdateExerciceDto } from './dto/update-exercice.dto';
 
 @Controller('exercice')
+@ApiTags('exercise')
 export class ExerciceController {
   constructor(private readonly exerciceService: ExerciceService) {}
 
