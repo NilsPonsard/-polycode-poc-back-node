@@ -6,10 +6,17 @@ import { AuthModule } from './auth/auth.module';
 import { MailController } from './mail/mail.controller';
 import { MailModule } from './mail/mail.module';
 import { RunnerModule } from './runner/runner.module';
+import { GetMongoModule } from './setup-mongo';
 
 @Module({
   controllers: [AppController, MailController],
   providers: [AppService],
-  imports: [UsersModule, AuthModule, MailModule, RunnerModule],
+  imports: [
+    UsersModule,
+    AuthModule,
+    MailModule,
+    RunnerModule,
+    GetMongoModule(),
+  ],
 })
 export class AppModule {}

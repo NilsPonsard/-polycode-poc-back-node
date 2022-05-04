@@ -11,6 +11,7 @@
 - FRONTEND_URL : url to the frontend
 - SENDIBLUE_KEY : the sendiblue api key
 - SENDER_EMAIL : the email to use when sending validation emails
+- MONGO_URI : uri to the mongo database
 
 In order to start containers (runners), the api needs access to the docker socket : `/var/run/docker.sock`.
 On this docker the images in **runner-images** must be available, use `runner-images/build.sh`.
