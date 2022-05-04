@@ -5,8 +5,9 @@ WORKDIR /runner
 
 COPY ./start.sh /runner
 
+RUN chown -R 1000:1000 /runner
 
-USER user:user
+USER 1000:1000
 
 
 
