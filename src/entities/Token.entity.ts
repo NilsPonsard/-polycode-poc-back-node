@@ -1,5 +1,6 @@
 import {
   BaseEntity,
+  Column,
   CreateDateColumn,
   Entity,
   ManyToOne,
@@ -8,9 +9,12 @@ import {
 import { User } from './user.entity';
 
 @Entity()
-export class AccessToken extends BaseEntity {
+export class Token extends BaseEntity {
   @PrimaryColumn()
-  token: string;
+  accessToken: string;
+
+  @Column({ unique: true })
+  refreshToken: string;
 
   @ManyToOne(() => User /*, (user) => user.accessTokens*/)
   user: User;

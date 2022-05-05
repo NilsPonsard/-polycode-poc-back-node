@@ -13,11 +13,10 @@ import * as bcrypt from 'bcrypt';
 import { newTokenPair } from './create-token';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from './auth.guard';
-import { AccessToken } from 'src/entities/accessToken.entity';
+import { Token } from 'src/entities/Token.entity';
 import { Request } from 'express';
 import { RefreshDto } from './dto/refresh.dto';
 import { refreshExpiration } from './jwt';
-import { RefreshToken } from 'src/entities/refreshToken.entity';
 
 /**
  * AuthController
@@ -47,8 +46,10 @@ export class AuthController {
   @ApiBearerAuth('authorization')
   @UseGuards(AuthGuard)
   async logout(@Req() request: Request) {
-    console.log(request.accessToken);
-    if (request.accessToken) AccessToken.delete({ token: request.accessToken });
+    if (request.accessToken)
+      Token.delete({
+        accessToken: request.accessToken,
+      });
     return { message: 'Logout successful' };
   }
 
@@ -57,8 +58,8 @@ export class AuthController {
   async refreshToken(@Body() refreshDto: RefreshDto) {
     const { refreshToken } = refreshDto;
 
-    const queryResult = await AccessToken.findOne({
-      where: { token: refreshToken },
+    const queryResult = await Token.findOne({
+      where: { refreshToken },
       relations: { user: true },
     });
     if (!queryResult) throw new HttpException('Invalid refresh token', 401);
@@ -66,7 +67,7 @@ export class AuthController {
     const { user, createdAt } = queryResult;
 
     // delete old token
-    RefreshToken.delete({ token: refreshToken });
+    Token.delete({ refreshToken });
 
     if (!user) throw new HttpException('Invalid refresh token', 401);
 

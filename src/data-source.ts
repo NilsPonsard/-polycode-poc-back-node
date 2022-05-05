@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { AccessToken } from './entities/accessToken.entity';
+import { AccessToken } from './entities/Token.entity';
 import { Completion } from './entities/completion.entity';
 import { Email } from './entities/email.entity';
 import { RefreshToken } from './entities/refreshToken.entity';

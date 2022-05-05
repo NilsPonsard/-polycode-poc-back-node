@@ -1,4 +1,4 @@
-import { AccessToken } from 'src/entities/accessToken.entity';
+import { Token } from 'src/entities/Token.entity';
 import { accessExpiration, verify } from './jwt';
 
 export async function CheckUser(request: any): Promise<boolean> {
@@ -7,11 +7,11 @@ export async function CheckUser(request: any): Promise<boolean> {
   if (!authorization) return false;
   const content = await verify(authorization.replace('Bearer ', ''));
 
-  const token = typeof content != 'string' ? content?.token : undefined;
-  if (!token) return false;
+  const accessToken = typeof content != 'string' ? content?.token : undefined;
+  if (!accessToken) return false;
 
-  const queryResult = await AccessToken.findOne({
-    where: { token },
+  const queryResult = await Token.findOne({
+    where: { accessToken },
     relations: { user: true },
   });
 
@@ -20,13 +20,13 @@ export async function CheckUser(request: any): Promise<boolean> {
   const { user, createdAt } = queryResult;
 
   if (createdAt.getTime() + accessExpiration * 1000 < Date.now()) {
-    // delete old token
-    AccessToken.delete({ token });
+    // delete old accessToken
+    accessToken.delete({ accessToken });
     return false;
   }
   if (!user) return false;
 
   request.user = user;
-  request.accessToken = token;
+  request.accessToken = accessToken;
   return true;
 }
