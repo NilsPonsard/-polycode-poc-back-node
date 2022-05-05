@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo $CODE > Main.java
+echo "$CODE" > Main.java
 
 javac Main.java
 

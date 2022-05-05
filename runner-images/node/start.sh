@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo $CODE > code.js
+echo "$CODE" > code.js
 
 node code.js

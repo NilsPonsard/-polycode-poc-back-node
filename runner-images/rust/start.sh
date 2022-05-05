@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo $CODE > code.rs
+echo "$CODE" > code.rs
 
 rustc -o code code.rs > /dev/null
 
