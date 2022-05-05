@@ -3,10 +3,10 @@ import { IsNotEmpty } from 'class-validator';
 
 export class LoginDto {
   @ApiProperty()
-  // @IsNotEmpty()
+  @IsNotEmpty()
   username: string;
 
   @ApiProperty()
-  // @IsNotEmpty()
+  @IsNotEmpty()
   password: string;
 }

@@ -25,7 +25,7 @@ export async function dockerRunCode(
     },
   });
 
-  await docker.run(
+  const data = await docker.run(
     image,
     ['/bin/sh', 'start.sh'],
     [stdout, stderr],
@@ -35,6 +35,8 @@ export async function dockerRunCode(
     },
     {},
   );
+
+  await data[1].remove();
 
   return { stdout: stdoutString, stderr: stderrString };
 }
