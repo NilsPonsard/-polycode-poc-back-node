@@ -9,7 +9,7 @@
 - DB_PASSWORD : database password for DB_USERNAME
 - DB_DATABASE : name of the database to use
 - FRONTEND_URL : url to the frontend
-- SENDIBLUE_KEY : the sendiblue api key
+- SENDINBLUE_KEY : the sendinblue api key
 - SENDER_EMAIL : the email to use when sending validation emails
 - MONGO_URI : uri to the mongo database
 

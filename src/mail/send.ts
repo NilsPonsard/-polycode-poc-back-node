@@ -6,7 +6,7 @@ import { FrontendUrl } from 'src/common';
 import { MailCoolDown } from './constants';
 import { HttpException } from '@nestjs/common';
 
-const sendiblueKey = process.env.SENDIBLUE_KEY;
+const sendinblueKey = process.env.SENDINBLUE_KEY;
 const senderEmail = process.env.SENDER_EMAIL;
 
 /**
@@ -89,7 +89,7 @@ function sendMail(email: string, subject: string, content: string) {
       htmlContent: content,
     },
     {
-      headers: { 'api-key': sendiblueKey },
+      headers: { 'api-key': sendinblueKey },
     },
   );
 }
