@@ -30,11 +30,13 @@ import { RefreshToken } from 'src/entities/refreshToken.entity';
 export class AuthController {
   @HttpCode(200)
   @Post('login')
-  async login(@Body() loginDto: LoginDto) {
+  async login(@Body() loginDto: LoginDto, @Req() request: Request) {
     const { username, password } = loginDto;
 
     const user = await User.findOne({ where: { username } });
     if (!user) throw new HttpException('Invalid username/password', 401);
+
+    console.log(username, password, loginDto, user.hashedPassword);
 
     const valid = await bcrypt.compare(password, user.hashedPassword);
     if (!valid) throw new HttpException('Invalid username/password', 401);
