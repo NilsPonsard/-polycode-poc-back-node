@@ -19,6 +19,9 @@ export class Exercise extends Document {
 
   @Prop()
   sampleCode: string;
+
+  @Prop()
+  defaultLanguage: string;
 }
 
 export const ExerciseSchema = SchemaFactory.createForClass(Exercise);
