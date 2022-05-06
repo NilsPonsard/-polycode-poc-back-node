@@ -16,6 +16,9 @@ export class Exercise extends Document {
 
   @Prop({ required: true })
   content: string;
+
+  @Prop()
+  sampleCode: string;
 }
 
 export const ExerciseSchema = SchemaFactory.createForClass(Exercise);
