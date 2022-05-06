@@ -1,6 +1,6 @@
 import * as Docker from 'dockerode';
 import { Stream } from 'stream';
-import { Output } from './languages/generic';
+import { Output } from './iRunner';
 
 const docker = new Docker();
 

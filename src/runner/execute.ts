@@ -2,7 +2,7 @@ import { HttpException } from '@nestjs/common';
 
 import * as ts from 'typescript';
 import { dockerRunCode } from './docker';
-import { Output } from './languages/generic';
+import { Output } from './iRunner';
 
 export async function execute(language: string, code: string) {
   let result: Output;
