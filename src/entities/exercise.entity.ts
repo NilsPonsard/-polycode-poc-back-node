@@ -5,8 +5,8 @@ export type ExerciseDocument = Exercise & Document;
 
 @Schema()
 export class Exercise extends Document {
-  @Prop()
-  _id: string;
+  // @Prop()
+  // _id: string;
 
   @Prop({ index: true, required: true })
   name: string;

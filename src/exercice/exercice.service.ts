@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateExerciceDto } from './dto/create-exercice.dto';
 import { UpdateExerciceDto } from './dto/update-exercice.dto';
 import { Exercise, ExerciseDocument } from 'src/entities/exercise.entity';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
@@ -20,8 +20,8 @@ export class ExerciceService {
     return this.ExerciseModel.find().exec();
   }
 
-  findOne(id: number) {
-    return this.ExerciseModel.findOne({ _id: id }).exec();
+  async findOne(id: string) {
+    return this.ExerciseModel.findById(new mongoose.Types.ObjectId(id)).exec();
   }
 
   // update(id: number, updateExerciceDto: UpdateExerciceDto) {

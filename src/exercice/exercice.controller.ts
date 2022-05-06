@@ -1,6 +1,7 @@
 import {
   Controller,
   Get,
+  HttpException,
   // Post,
   // Body,
   // Patch,
@@ -28,8 +29,10 @@ export class ExerciceController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.exerciceService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const res = await this.exerciceService.findOne(id);
+    if (!res) throw new HttpException('Exercice not found', 404);
+    return res;
   }
 
   // @Patch(':id')
