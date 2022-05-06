@@ -1,12 +1,11 @@
 import { DataSource } from 'typeorm';
-import { AccessToken } from './entities/Token.entity';
+import { Token } from './entities/Token.entity';
 import { Completion } from './entities/completion.entity';
 import { Email } from './entities/email.entity';
-import { RefreshToken } from './entities/refreshToken.entity';
 import { User } from './entities/user.entity';
 import isUndefined from './utils/isundefined';
 
-const entities = [User, Email, RefreshToken, AccessToken, Completion];
+const entities = [User, Email, Token, Completion];
 
 export let dataSource: DataSource;
 
