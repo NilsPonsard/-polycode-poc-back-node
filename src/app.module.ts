@@ -8,7 +8,7 @@ import { MailModule } from './mail/mail.module';
 import { RunnerModule } from './runner/runner.module';
 import { GetMongoModule } from './setup-mongo';
 import { CollectionModule } from './collection/collection.module';
-import { ExerciceModule } from './exercice/exercice.module';
+import { ExerciceModule } from './exercise/exercise.module';
 import { CompletionModule } from './completion/completion.module';
 
 @Module({

@@ -9,14 +9,14 @@ import {
   // Delete,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { ExerciceService } from './exercice.service';
+import { ExerciseService } from './exercise.service';
 // import { CreateExerciceDto } from './dto/create-exercice.dto';
 // import { UpdateExerciceDto } from './dto/update-exercice.dto';
 
-@Controller('exercice')
+@Controller('exercise')
 @ApiTags('exercise')
-export class ExerciceController {
-  constructor(private readonly exerciceService: ExerciceService) {}
+export class ExerciseController {
+  constructor(private readonly exerciceService: ExerciseService) {}
 
   // @Post()
   // create(@Body() createExerciceDto: CreateExerciceDto) {

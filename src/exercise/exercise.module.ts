@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ExerciceService } from './exercice.service';
-import { ExerciceController } from './exercice.controller';
+import { ExerciseService } from './exercise.service';
+import { ExerciseController } from './exercise.controller';
 import { Exercise, ExerciseSchema } from 'src/entities/exercise.entity';
 import { MongooseModule } from '@nestjs/mongoose';
 
@@ -10,7 +10,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       { name: Exercise.name, schema: ExerciseSchema },
     ]),
   ],
-  controllers: [ExerciceController],
-  providers: [ExerciceService],
+  controllers: [ExerciseController],
+  providers: [ExerciseService],
 })
 export class ExerciceModule {}

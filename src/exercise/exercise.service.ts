@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { CreateExerciceDto } from './dto/create-exercice.dto';
-import { UpdateExerciceDto } from './dto/update-exercice.dto';
+import { CreateExerciseDto } from './dto/create-exercise.dto';
+import { UpdateExerciseDto } from './dto/update-exercise.dto';
 import { Exercise, ExerciseDocument } from 'src/entities/exercise.entity';
 import mongoose, { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
-export class ExerciceService {
+export class ExerciseService {
   constructor(
     @InjectModel(Exercise.name)
     private ExerciseModel: Model<ExerciseDocument>,
