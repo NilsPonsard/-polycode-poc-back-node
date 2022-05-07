@@ -33,6 +33,7 @@ export class UsersController {
       id: request.user.id,
       username: request.user.username,
       email: request.user.email,
+      emailVerified: request.user.emailVerified,
     };
   }
 
