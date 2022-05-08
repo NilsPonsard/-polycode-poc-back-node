@@ -19,6 +19,5 @@ export async function validateMail(code: string): Promise<boolean> {
   email.user.emailVerified = true;
   await email.user.save();
 
-  Email.delete({ code });
   return true;
 }
