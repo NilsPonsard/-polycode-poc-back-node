@@ -6,9 +6,11 @@ import {
   // Body,
   // Patch,
   Param,
+  Query,
   // Delete,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { GetExerciseQuery } from './dto/get-exercise.dto';
 import { ExerciseService } from './exercise.service';
 // import { CreateExerciceDto } from './dto/create-exercice.dto';
 // import { UpdateExerciceDto } from './dto/update-exercice.dto';
@@ -24,8 +26,10 @@ export class ExerciseController {
   // }
 
   @Get()
-  findAll() {
-    return this.exerciceService.findAll();
+  @ApiQuery({ name: 'offset', required: false, type: 'number' })
+  @ApiQuery({ name: 'limit', required: false, type: 'number' })
+  findAll(@Query() options: GetExerciseQuery) {
+    return this.exerciceService.findAll(options.offset, options.limit);
   }
 
   @Get(':id')

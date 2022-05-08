@@ -16,11 +16,11 @@ export class ExerciseService {
   //   return 'This action adds a new exercice';
   // }
 
-  findAll(): Promise<Exercise[]> {
-    return this.ExerciseModel.find(
-      {},
-      { _id: 1, name: 1, description: 1 },
-    ).exec();
+  findAll(offset: number, limit: number): Promise<Exercise[]> {
+    return this.ExerciseModel.find({}, { _id: 1, name: 1, description: 1 })
+      .limit(limit)
+      .skip(offset)
+      .exec();
   }
 
   async findOne(id: string) {
