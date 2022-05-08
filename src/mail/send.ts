@@ -10,6 +10,65 @@ const sendinblueKey = process.env.SENDINBLUE_KEY;
 const senderEmail = process.env.SENDER_EMAIL;
 
 /**
+ * Sends a validation email to the user to reset his password.
+ * The mail contains a link to the frontend : <FrontendUrl>/auth/reset/:code
+ * The frontend must call back the backend at POST /mail/reset with the code and password in the request body (see MailController.validate)
+ *
+ * @param user
+ */
+export async function sendResetPasswordMail(email: string) {
+  const lastEmail = await Email.findOne({
+    where: {
+      user: {
+        email: email,
+      },
+    },
+    order: {
+      createdAt: 'DESC',
+    },
+    relations: ['user'],
+  });
+
+  if (lastEmail && lastEmail.createdAt.getTime() + MailCoolDown > Date.now())
+    throw new Error('Mail cooldown');
+
+  // Delete old codes
+
+  try {
+    Email.delete({
+      user: {
+        email: email,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+  }
+
+  const code = randomUUID();
+
+  const emailEntity = new Email();
+  emailEntity.code = code;
+  emailEntity.user = lastEmail.user;
+
+  await emailEntity.save();
+
+  const url = `${FrontendUrl}/auth/reset/${code}`;
+  try {
+    await sendMail(
+      email,
+      'Polycode : reset your password',
+      /*html*/
+      `<p>Hello ${lastEmail.user.username} !</p>
+      <p>Please click on the following link to reset your password :
+      <a href="${url}">${url}</a>
+      </p>`,
+    );
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+/**
  * Sends a validation email to the user that is not yet validated.
  * The mail contains a link to the frontend : <FrontendUrl>/auth/validate/:code
  * The frontend must call back the backend at POST /mail/validate (see MailController.validate)
