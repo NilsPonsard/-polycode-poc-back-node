@@ -19,8 +19,14 @@ export class CollectionService {
     return 'This action adds a new collection';
   }
 
-  findAll(): Promise<ExerciceCollection[]> {
-    return this.ExerciceCollectionModel.find().exec();
+  findAll(offset: number, limit: number): Promise<ExerciceCollection[]> {
+    return this.ExerciceCollectionModel.find(
+      {},
+      { _id: 1, description: 1, name: 1 },
+    )
+      .skip(offset)
+      .limit(limit)
+      .exec();
   }
 
   findOne(id: number): Promise<ExerciceCollection> {

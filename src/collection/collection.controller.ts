@@ -6,10 +6,12 @@ import {
   // Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
 import { CollectionService } from './collection.service';
 import { CreateCollectionDto } from './dto/create-collection.dto';
+import { GetCollectionQuery } from './dto/get-collection.dto';
 import { UpdateCollectionDto } from './dto/update-collection.dto';
 
 @Controller('collection')
@@ -23,8 +25,10 @@ export class CollectionController {
   // }
 
   @Get()
-  findAll() {
-    return this.collectionService.findAll();
+  @ApiQuery({ name: 'offset', required: false, type: 'number' })
+  @ApiQuery({ name: 'limit', required: false, type: 'number' })
+  findAll(@Query() options: GetCollectionQuery) {
+    return this.collectionService.findAll(options.offset, options.limit);
   }
 
   @Get(':id')
