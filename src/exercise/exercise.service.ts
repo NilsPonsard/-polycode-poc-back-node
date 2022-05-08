@@ -17,7 +17,10 @@ export class ExerciseService {
   // }
 
   findAll(): Promise<Exercise[]> {
-    return this.ExerciseModel.find().exec();
+    return this.ExerciseModel.find(
+      {},
+      { _id: 1, name: 1, description: 1 },
+    ).exec();
   }
 
   async findOne(id: string) {
