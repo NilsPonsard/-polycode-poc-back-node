@@ -16,11 +16,21 @@ export class ExerciseService {
   //   return 'This action adds a new exercice';
   // }
 
-  findAll(offset: number, limit: number): Promise<Exercise[]> {
-    return this.ExerciseModel.find({}, { _id: 1, name: 1, description: 1 })
+  async findAll(
+    offset: number,
+    limit: number,
+  ): Promise<{ result: Exercise[]; total: number }> {
+    const total = await this.ExerciseModel.count();
+
+    const result = await this.ExerciseModel.find(
+      {},
+      { _id: 1, name: 1, description: 1 },
+    )
       .limit(limit)
       .skip(offset)
       .exec();
+
+    return { result, total };
   }
 
   async findOne(id: string) {
