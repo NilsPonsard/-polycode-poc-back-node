@@ -13,5 +13,5 @@ export class GetCollectionQuery {
   @Transform(({ value }) => toNumber(value, { default: 30, min: 1, max: 100 }))
   @IsNumber()
   @ApiProperty()
-  limit: number;
+  limit = 30;
 }
