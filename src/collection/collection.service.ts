@@ -22,7 +22,7 @@ export class CollectionService {
   findAll(offset: number, limit: number): Promise<ExerciceCollection[]> {
     return this.ExerciceCollectionModel.find(
       {},
-      { _id: 1, description: 1, name: 1 },
+      { _id: 1, description: 1, name: 1, content: 1 },
     )
       .skip(offset)
       .limit(limit)
