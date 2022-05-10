@@ -33,7 +33,7 @@ export class CollectionController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.collectionService.findOne(+id);
+    return this.collectionService.findOne(id);
   }
 
   // @Patch(':id')

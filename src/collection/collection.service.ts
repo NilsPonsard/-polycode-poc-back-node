@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import {
   ExerciceCollection,
   ExerciceCollectionDocument,
@@ -36,8 +36,12 @@ export class CollectionService {
     return { result, total };
   }
 
-  findOne(id: number): Promise<ExerciceCollection> {
-    return this.ExerciceCollectionModel.findOne({ _id: id }).exec();
+  findOne(id: string): Promise<ExerciceCollection> {
+    return this.ExerciceCollectionModel.findById(
+      new mongoose.Types.ObjectId(id),
+    )
+      .populate('content')
+      .exec();
   }
 
   update(id: number, updateCollectionDto: UpdateCollectionDto) {
