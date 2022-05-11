@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from '../entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { sendValidationMail } from 'src/mail/send';
+import { hashPassword } from 'src/utils/hashPassword';
 
 @Injectable()
 export class UsersService {
@@ -11,8 +12,8 @@ export class UsersService {
     const user = new User();
     user.username = createUserDto.username;
     user.email = createUserDto.email;
-    const hash = await bcrypt.hash(createUserDto.password, 10);
 
+    const hash = await hashPassword(createUserDto.password);
     user.hashedPassword = hash;
     const savedUser = await user.save();
 
