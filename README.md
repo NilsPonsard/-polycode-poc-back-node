@@ -16,51 +16,42 @@
 In order to start containers (runners), the api needs access to the docker socket : `/var/run/docker.sock`.
 On this docker the images in **runner-images** must be available, use `runner-images/build.sh`.
 
-## Description
-
-
 ## Installation
 
 ```bash
-$ npm install
+npm install
 ```
 
-## Running the app
+## Starting
 
-```bash
-# development
-$ npm run start
+### dev
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```sh
+npm run start:dev
 ```
 
-## Test
+With dev env variables :
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```sh
+DB_USERNAME=postgres DB_PASSWORD=postgres DB_DATABASE=postgres JWT_SECRET=ah SENDER_EMAIL="noreply@nponsard.net" SENDIBLUE_KEY=<redacted> MONGO_URI=mongodb://root:example@localhost:27017/ npm run test
 ```
 
-## Support
+### Production
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+You need to build first :
 
-## Stay in touch
+```sh
+npm run build
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Then you can run (don’t forget to set env variables) :
 
-## License
+```sh
+npm run start:prod
+```
 
-Nest is [MIT licensed](LICENSE).
+## Testing
+
+```sh
+npm run test
+```
