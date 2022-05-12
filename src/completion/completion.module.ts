@@ -12,7 +12,7 @@ import { CompletionService } from './completion.service';
   imports: [
     MongooseModule.forFeature([
       { name: ExerciceCollection.name, schema: ExerciceCollectionSchema },
-      { name: Exercise.name, schema: ExerciseSchema },
+      // { name: Exercise.name, schema: ExerciseSchema },
     ]),
   ],
   controllers: [CompletionController],
