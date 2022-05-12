@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import { IsNumber, IsOptional } from 'class-validator';
-import { toNumber } from 'src/utils/toNumber';
+import { toNumber } from '../../utils/toNumber';
 
 export class GetExerciseQuery {
   @Transform(({ value }) => toNumber(value, { default: 0, min: 0 }))

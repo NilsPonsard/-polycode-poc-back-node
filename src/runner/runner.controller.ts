@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { AuthGuardValidMail } from 'src/auth/authMail.guard';
+import { AuthGuardValidMail } from '../auth/authMail.guard';
 import { DockerRunner } from './dockerRunner';
 import { RunCodeDto } from './dto/run-code.dto';
 import { execute } from './execute';

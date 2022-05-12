@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AuthGuardValidMail } from 'src/auth/authMail.guard';
+import { AuthGuardValidMail } from '../auth/authMail.guard';
 import { CompletionService } from './completion.service';
 import { Request } from 'express';
 

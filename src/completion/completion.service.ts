@@ -2,14 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { Model } from 'mongoose';
-import { dataSource } from 'src/data-source';
+import { dataSource } from '../data-source';
 import {
   ExerciceCollection,
   ExerciceCollectionDocument,
-} from 'src/entities/collection.entity';
-import { Completion } from 'src/entities/completion.entity';
-import { Exercise, ExerciseDocument } from 'src/entities/exercise.entity';
-import { User } from 'src/entities/user.entity';
+} from '../entities/collection.entity';
+import { Completion } from '../entities/completion.entity';
+import { Exercise, ExerciseDocument } from '../entities/exercise.entity';
+import { User } from '../entities/user.entity';
 
 export class CollectionCompletion {
   @ApiProperty()
@@ -23,8 +23,6 @@ export class CompletionService {
   constructor(
     @InjectModel(ExerciceCollection.name)
     private ExerciceCollectionModel: Model<ExerciceCollectionDocument>,
-    @InjectModel(Exercise.name)
-    private ExerciseModel: Model<ExerciseDocument>,
   ) {}
 
   async getCollectionTotal(collectionId: string): Promise<number> {

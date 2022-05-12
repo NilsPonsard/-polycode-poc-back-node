@@ -7,13 +7,13 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { User } from 'src/entities/user.entity';
+import { User } from '../entities/user.entity';
 import { LoginDto } from './dto/login.dto';
 import * as bcrypt from 'bcrypt';
 import { newTokenPair } from './create-token';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from './auth.guard';
-import { Token } from 'src/entities/Token.entity';
+import { Token } from '../entities/Token.entity';
 import { Request } from 'express';
 import { RefreshDto } from './dto/refresh.dto';
 import { refreshExpiration } from './jwt';

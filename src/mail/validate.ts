@@ -1,5 +1,5 @@
-import { Email } from 'src/entities/email.entity';
-import { hashPassword } from 'src/utils/hashPassword';
+import { Email } from '../entities/email.entity';
+import { hashPassword } from '../utils/hashPassword';
 import { MailExpiration } from './constants';
 
 /**

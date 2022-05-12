@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ExerciseService } from './exercise.service';
 import { ExerciseController } from './exercise.controller';
-import { Exercise, ExerciseSchema } from 'src/entities/exercise.entity';
+import { Exercise, ExerciseSchema } from '../entities/exercise.entity';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({

@@ -5,8 +5,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import {
   ExerciceCollection,
   ExerciceCollectionSchema,
-} from 'src/entities/collection.entity';
-import { Exercise, ExerciseSchema } from 'src/entities/exercise.entity';
+} from '../entities/collection.entity';
+import { Exercise, ExerciseSchema } from '../entities/exercise.entity';
 
 @Module({
   imports: [

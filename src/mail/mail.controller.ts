@@ -8,7 +8,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { AuthGuard } from '../auth/auth.guard';
 import { sendResetPasswordMail, sendValidationMail } from './send';
 import { Request } from 'express';
 import { ValidateMailDto } from './dto/validate-mail.dto';

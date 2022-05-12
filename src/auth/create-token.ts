@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
-import { Token } from 'src/entities/Token.entity';
-import { User } from 'src/entities/user.entity';
+import { Token } from '../entities/Token.entity';
+import { User } from '../entities/user.entity';
 import { accessExpiration, refreshExpiration, sign } from './jwt';
 
 export async function newTokenPair(user: User) {

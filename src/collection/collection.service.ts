@@ -4,7 +4,7 @@ import mongoose, { Model } from 'mongoose';
 import {
   ExerciceCollection,
   ExerciceCollectionDocument,
-} from 'src/entities/collection.entity';
+} from '../entities/collection.entity';
 import { CreateCollectionDto } from './dto/create-collection.dto';
 import { UpdateCollectionDto } from './dto/update-collection.dto';
 

@@ -1,8 +1,8 @@
 import { randomUUID } from 'crypto';
-import { Email } from 'src/entities/email.entity';
-import { User } from 'src/entities/user.entity';
+import { Email } from '../entities/email.entity';
+import { User } from '../entities/user.entity';
 import * as axios from 'axios';
-import { FrontendUrl } from 'src/common';
+import { FrontendUrl } from '../common';
 import { MailCoolDown } from './constants';
 import { HttpException } from '@nestjs/common';
 

@@ -1,4 +1,4 @@
-import { Token } from 'src/entities/Token.entity';
+import { Token } from '../entities/Token.entity';
 import { accessExpiration, verify } from './jwt';
 
 export async function CheckUser(request: any): Promise<boolean> {
